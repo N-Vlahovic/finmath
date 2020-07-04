@@ -29,7 +29,7 @@ class HaltonSequence(Iterator):
 
     @classmethod
     def halton_sequence(cls, base: int):
-        index = 0
+        index = 1
         while True:
             yield cls.halton_number(index=index, base=base)
             index += 1
