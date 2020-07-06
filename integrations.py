@@ -37,6 +37,16 @@ class MonteCarlo(AbstractIntegrator):
         return 4 * pi / n
 
 
+class Trapezoid(AbstractIntegrator):
+    @classmethod
+    def integrate(cls, func: Callable, a: float, b: float, n: int):
+        ans = 0
+        h = (b - a) / n
+        for k in range(n):
+            ans += func(a + k * h) + func(a + (k + 1) * h)
+        return ans * h / 2
+
+
 class Simpson(AbstractIntegrator):
     @classmethod
     def integrate(

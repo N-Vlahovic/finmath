@@ -6,7 +6,7 @@ import pseudo_random
 import utils
 
 
-def exp_d(x: float, lmbda: float) -> float:
+def exp_inv_sampling(x: float, lmbda: float) -> float:
     return -math.log(1 - x) / lmbda
 
 
@@ -34,7 +34,7 @@ class AcceptanceRejection(Iterator):
         while True:
             u, y = utils.INF, 1
             while u > math.exp(-0.5 * (y - 1)**2):
-                u, y = next(rand_u), exp_d(next(rand_y), 1)
+                u, y = next(rand_u), exp_inv_sampling(next(rand_y), 1)
             if next(uni) < 0.5:
                 yield y
             else:
